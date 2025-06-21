@@ -3,12 +3,12 @@ const { Inquiry, Property, User } = require('../models');
 // Submit an inquiry (Anonymous or Authenticated)
 const submitInquiry = async (req, res) => {
   try {
-    const { name, email, phone, message, propertyId } = req.body;
+    const { name, email, phone, message, inquiryType, propertyId } = req.body;
 
-    if (!name || !email || !phone || !message) {
+    if (!name || !email || !phone || !message ||  !propertyId) {
       return res.status(400).json({
         success: false,
-        error: "Name, email, phone, and message are required",
+        error: "All fields are required including inquiry type",
       });
     }
 
@@ -17,9 +17,8 @@ const submitInquiry = async (req, res) => {
       email,
       phone,
       message,
-      propertyId: propertyId || null,
- 
-      inquiryType: propertyId ? 'Property-Specific' : 'General',
+       
+      propertyId
     });
 
     return res.status(201).json({

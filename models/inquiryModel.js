@@ -8,15 +8,15 @@ const Inquiry = sequelize.define('Inquiry', {
     phone: { type: DataTypes.STRING(20), allowNull: false },
     message: { type: DataTypes.TEXT, allowNull: false },
     inquiryType: {
-        type: DataTypes.ENUM('General', 'Property-Specific'),
-        allowNull: false,
-        defaultValue: 'Property-Specific'
+        type: DataTypes.ENUM('For Rent', 'For Sale' ),
+        allowNull: true,
+        defaultValue: 'For Rent'
     },
     userId: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-      model: 'Users',   
+      model: 'users',   
       key: 'id'
     }
     },
@@ -24,7 +24,7 @@ const Inquiry = sequelize.define('Inquiry', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-      model: 'Properties',  // 👈 Match actual table name if different
+      model: 'properties',  // 👈 Match actual table name if different
       key: 'id'
     }
     }

@@ -8,9 +8,9 @@ require('./config/db'); // Sequelize DB connection
 const userRoute = require('./routes/userRoute');
 const propertyRoute = require('./routes/propertyRoute');
 const inquiryRoute = require('./routes/inquiryModel')
-
+const generalInquiryRoutes = require('./routes/generalInquiryModel');
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 7000;
  
 app.use(express.json());
 app.use(cors());
@@ -24,5 +24,6 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api/users', userRoute);
 app.use('/api/properties', propertyRoute);
 app.use('/api/inquiries', inquiryRoute);
+app.use('/api/general-inquiries', generalInquiryRoutes);
 // Start server
 app.listen(port, () => console.log(`Server running on port ${port}`));

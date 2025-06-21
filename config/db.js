@@ -21,7 +21,7 @@ const connectDB = async() => {
 
     // Automatically alter the tables to match model definitions (you can adjust this based on your need)
 
-        await sequelize.sync({ alter: false })   
+        await sequelize.sync({ alter: true })   
 
     } catch (error) {
         console.error("Unable to connect", error)

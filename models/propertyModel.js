@@ -12,9 +12,10 @@ image: {
     type: DataTypes.STRING(255), 
     allowNull: false,
     get() {
-      const rawValue = this.getDataValue('image');
-      return rawValue ? `/uploads/${rawValue}` : null;
-    }
+  const rawValue = this.getDataValue('image');
+  return rawValue ? `${process.env.BASE_URL || 'http://localhost:7000'}/uploads/${rawValue}` : null;
+}
+
   },
     size: { type: DataTypes.STRING(100), allowNull: true },
     area: { type: DataTypes.STRING(100), allowNull: true },
@@ -29,7 +30,7 @@ image: {
     country: { type: DataTypes.STRING(100), allowNull: false, defaultValue: 'United States' },
 }, {
     tableName: 'properties',
-    timestamps: true
+    timestamps: false
 });
 
 module.exports = Property;
